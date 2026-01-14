@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <style>
+      .form-signin {
+        max-width: 330px;
+        padding: 1rem;
+      }
+    </style>
+  </head>
+
+  <body class="d-flex align-items-center py-4 bg-body-tertiary">
+    {% extends "base.html" %} {% block content %}
+
+    <main class="form-signin w-100 m-auto">
+      <form method="post" action="{{ url_for('auth.login') }}">
+        {{ form.hidden_tag() }}
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+        <div class="form-floating">
+          {{form.username(class="form-control", placeholder="Username")}}
+          {{form.username.label()}}
+        </div>
+
+        <div class="form-floating">
+          {{form.password(class="form-control", placeholder="Password")}}
+          {{form.password.label()}}
+        </div>
+
+        {{form.submit(class="btn btn-primary w-100 py-2", type="submit")}}
+      </form>
+    </main>
+
+    {% endblock content %}
+  </body>
+</html>
