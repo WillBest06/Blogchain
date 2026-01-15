@@ -8,7 +8,7 @@ db = SQLAlchemy()
 
 @login_manager.user_loader
 def load_user(user_id):
-    return db.session.execute(select(User).where(User.id == int(user_id)))
+    return db.session.execute(db.select(User).where(User.id == int(user_id))).scalar()
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
