@@ -1,16 +1,21 @@
 {% extends "base.html" %} {% block title %} Home {% endblock %} {% block content
-%}
-<div class="jumbotron">
-  <h1 class="display-4">Hello, world!</h1>
-  <p class="lead">
-    This is a simple hero unit, a simple jumbotron-style component for calling
-    extra attention to featured content or information.
-  </p>
-  <hr class="my-4" />
-  <p>
-    It uses utility classes for typography and spacing to space content out
-    within the larger container.
-  </p>
-  <a class="btn btn-primary btn-lg" href="#" role="button">Reply</a>
+%} {% for story in stories %}
+<div class="jumbotron mb-4">
+  <div class="d-flex">
+    <div class="w-50">
+      <h2 class="display-8">{{story.title}}</h2>
+      <div class="d-flex w-25 align-items-center">
+        <p class="lead mb-0">{{story.author}}</p>
+        <span class="mx-2" style="user-select: none">•</span>
+        <p class="lead mb-0">
+          {{ moment(story.created).fromNow(refresh = True) }}
+        </p>
+      </div>
+      <hr class="mb-4" />
+      <p>{{story.body}}</p>
+      <a class="btn btn-primary btn-lg" href="#" role="button">Reply</a>
+    </div>
+    <div class="w-50"><div class="overflow-auto">Replies</div></div>
+  </div>
 </div>
-{% endblock %}
+{% endfor %} {% endblock %}
