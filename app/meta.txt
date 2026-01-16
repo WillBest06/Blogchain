@@ -4,6 +4,7 @@ pip install flask &&
 pip install Flask-Migrate &&
 pip install flask-login &&
 pip install Flask-WTF &&
+pip install flask-moment &&
 
 export FLASK_APP=app &&
 export FLASK_DEBUG=1 &&
