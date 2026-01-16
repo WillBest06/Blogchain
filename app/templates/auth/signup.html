@@ -26,8 +26,6 @@
     </style>
   </head>
   <body class="d-flex align-items-center py-4 bg-body-tertiary">
-    {% extends "base.html" %} {% block content %}
-
     <main class="form-signin w-100 m-auto">
       <form method="post">
         {{ form.hidden_tag() }}
@@ -51,7 +49,5 @@
         {{form.submit(class="btn btn-primary w-100 py-2", type="submit")}}
       </form>
     </main>
-
-    {% endblock content %}
   </body>
 </html>
