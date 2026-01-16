@@ -1,4 +1,4 @@
-from app.models import Post, db
+from app.models import User, Post, db
 from flask import flash, redirect, Blueprint, render_template, url_for, request
 from flask_login import login_required, current_user
 
@@ -11,7 +11,9 @@ def create():
     parent_post = None
     if parent_id:
         parent_post = db.session.execute(db.select(Post).where(Post.id == parent_id)).scalar()
-    print(parent_post)
+        author = db.session.execute(db.select(User).where(User.id == parent_post.user_id)).scalar()
+        parent_post.author = author.username
+
     from .forms.create.PostForm import PostForm
     # PostForm is a WTForms custom form
     form = PostForm()
@@ -23,8 +25,8 @@ def create():
         post.parent_id = parent_id
 
         db.session.add(post)
-        db.session.commit()
-
+        db.session.commit() 
+            
         if parent_id:
             flash("Reply sent!")
         else:

@@ -2,9 +2,9 @@
 content %} {% if parent %}
 <h2>Replying to:</h2>
 
-<div class="jumbotron p-2 border border-bottom-0">
+<div class="w-50 jumbotron p-2 border mb-4">
   <div class="d-flex">
-    <div class="w-50">
+    <div class="w-100">
       <div class="d-flex w-25 align-items-center text-secondary">
         <p class="lead mb-0">{{parent.author}}</p>
         <span class="mx-2" style="user-select: none">•</span>
@@ -13,7 +13,7 @@ content %} {% if parent %}
         </p>
       </div>
       <h2 class="display-8 m-0">{{parent.title}}</h2>
-      <p>{{parent.body}}</p>
+      <p class="m-0">{{parent.body}}</p>
     </div>
   </div>
 </div>
