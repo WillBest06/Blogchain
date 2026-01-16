@@ -29,6 +29,9 @@ def create_app():
     from flask_wtf.csrf import CSRFProtect
     csrf = CSRFProtect(app) # for logout form which does not use WTForm
 
+    from flask_moment import Moment
+    moment = Moment(app)
+
     app.register_blueprint(home_bp, csrf=csrf)
     app.register_blueprint(create_bp, url_prefix='/create')
     app.register_blueprint(auth_bp, url_prefix='/auth')
