@@ -6,15 +6,21 @@
 >
   <div class="d-flex position-relative" style="height: fit-content">
     <div class="w-50" style="height: fit-content">
-      <div class="d-flex align-items-center text-secondary overflow-hidden">
-        <p class="lead mb-0">{{post.author}}</p>
-        <span class="mx-2" style="user-select: none">•</span>
-        <p class="lead mb-0">
-          {{ moment(post.created).fromNow(refresh = True) }}
-        </p>
-      </div>
-      <h2 class="display-8 mb-2 overflow-hidden">{{post.title}}</h2>
-      <p>{{post.body}}</p>
+      <section class="position-relative">
+        <a
+          href="{{url_for('viewPost.viewPost', username=post.author, post_id=post.id)}}"
+          class="stretched-link"
+        ></a>
+        <div class="d-flex align-items-center text-secondary overflow-hidden">
+          <p class="lead mb-0">{{post.author}}</p>
+          <span class="mx-2" style="user-select: none">•</span>
+          <p class="lead mb-0">
+            {{ moment(post.created).fromNow(refresh = True) }}
+          </p>
+        </div>
+        <h2 class="display-8 mb-2 overflow-hidden">{{post.title}}</h2>
+        <p>{{post.body}}</p>
+      </section>
       <a
         class="btn btn-primary btn-lg"
         href="{{url_for('create.create', reply_to=post.id)}}"
@@ -27,7 +33,12 @@
       <div class="overflow-auto position-absolute" style="max-height: 75%">
         <ul style="height: fit-content">
           {% for reply in post.replies %}
-          <li><a href="{{ url_for('create.create') }}">{{reply.title}}</a></li>
+          <li>
+            <a
+              href="{{ url_for('viewPost.viewPost', username=post.author, post_id=reply.id) }}"
+              >{{reply.title}}</a
+            >
+          </li>
           {% endfor %}
         </ul>
       </div>
