@@ -1,4 +1,5 @@
-{% macro post_list(posts) %} {% for post in posts %}
+{% macro post_list(posts, deletePostForm, current_user) %} {% for post in posts
+%}
 <div
   class="jumbotron p-2 border border-bottom-0"
   style="max-height: 230px; height: fit-content"
@@ -28,12 +29,24 @@
           <p>{{post.body}}</p>
         </section>
       </section>
-      <a
-        class="btn btn-primary btn-lg"
-        href="{{url_for('create.create', reply_to=post.id)}}"
-        role="button"
-        >Reply</a
-      >
+      <section class="d-flex gap-2">
+        <a
+          class="btn btn-primary btn-lg"
+          href="{{url_for('create.create', reply_to=post.id)}}"
+          role="button"
+          >Reply</a
+        >
+
+        {% if post.user_id == current_user.id %}
+        <form
+          method="post"
+          action="{{url_for('delete.deletePost', post_id=post.id)}}"
+        >
+          {{ deletePostForm.hidden_tag() }} {{deletePostForm.submit(class="btn
+          btn-danger btn-lg", type="submit")}}
+        </form>
+        {% endif %}
+      </section>
     </div>
     <div class="w-50">
       Replies: {% if post.replies %}
