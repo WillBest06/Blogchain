@@ -1,0 +1,21 @@
+{% from "macros.html" import post_list with context %} {% extends "base.html" %}
+{% block title %} Profile {% endblock %} {% block content %}
+<div class="d-flex flex-column gap-4">
+  <div class="d-flex justify-content-center gap-4">
+    <img
+      src="{{ url_for('static', filename='profile_pictures/' + current_user.username[0].upper() + '.png') }}"
+      alt="{{current_user.username}}'s profile picture"
+      width="150"
+      height="150"
+      class="rounded-circle"
+    />
+
+    <div class="d-flex flex-column">
+      <h4>{{current_user.username}}</h4>
+      <p>Posts: {{posts|length}}</p>
+    </div>
+  </div>
+
+  {{ post_list(posts) }}
+</div>
+{% endblock %}
