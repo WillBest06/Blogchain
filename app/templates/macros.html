@@ -1,0 +1,58 @@
+{% macro post_list(posts) %} {% for post in posts %}
+<div
+  class="jumbotron p-2 border border-bottom-0"
+  style="max-height: 230px; height: fit-content"
+>
+  <div class="d-flex position-relative" style="height: fit-content">
+    <div class="w-50" style="height: fit-content">
+      <section class="position-relative">
+        <div class="d-flex align-items-center text-secondary overflow-hidden">
+          <section class="position-relative">
+            <a
+              href="{{url_for('profile.profile', username=post.author)}}"
+              class="stretched-link"
+            ></a>
+            <p class="lead mb-0">{{post.author}}</p>
+          </section>
+          <span class="mx-2" style="user-select: none">•</span>
+          <p class="lead mb-0">
+            {{ moment(post.created).fromNow(refresh = True) }}
+          </p>
+        </div>
+        <section class="position-relative">
+          <a
+            href="{{url_for('viewPost.viewPost', username=post.author, post_id=post.id)}}"
+            class="stretched-link"
+          ></a>
+          <h2 class="display-8 mb-2 overflow-hidden">{{post.title}}</h2>
+          <p>{{post.body}}</p>
+        </section>
+      </section>
+      <a
+        class="btn btn-primary btn-lg"
+        href="{{url_for('create.create', reply_to=post.id)}}"
+        role="button"
+        >Reply</a
+      >
+    </div>
+    <div class="w-50">
+      Replies: {% if post.replies %}
+      <div class="overflow-auto position-absolute" style="max-height: 75%">
+        <ul style="height: fit-content">
+          {% for reply in post.replies %}
+          <li>
+            <a
+              href="{{ url_for('viewPost.viewPost', username=post.author, post_id=reply.id) }}"
+              >{{reply.title}}</a
+            >
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% else %}
+      <p>No replies yet. Be the first to reply.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endfor %} {% endmacro %}
