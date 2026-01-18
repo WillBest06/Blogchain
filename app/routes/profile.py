@@ -10,5 +10,7 @@ def profile(username):
     posts = db.session.execute(db.select(Post).where(Post.user_id == user.id).order_by(Post.created.desc())).scalars().all()
     
     for post in posts:
+        author = db.session.execute(db.select(User).where(User.id == post.user_id)).scalar()
+        post.author = author.username
         post.replies = db.session.execute(db.select(Post).where(Post.parent_id == post.id).order_by(Post.created.desc())).scalars().all()
-    return render_template('profile.html', current_user=current_user, posts=posts)
+    return render_template('profile.html', user=user, posts=posts)
