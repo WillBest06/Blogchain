@@ -1,0 +1,82 @@
+{% extends "base.html" %} {% block title %}Create post{% endblock %} {% block
+content %} {% if parent %}
+<div class="w-100 jumbotron p-2 border mb-4">
+  <div class="d-flex">
+    <div class="w-100">
+      <section class="position-relative">
+        <a
+          href="{{url_for('viewPost.viewPost', username=parent.author, post_id=parent.id)}}"
+          class="stretched-link"
+        ></a>
+        <div class="d-flex align-items-center text-secondary">
+          <p class="lead mb-0">{{parent.author}}</p>
+          <span class="mx-2" style="user-select: none">•</span>
+          <p class="lead mb-0">
+            {{ moment(parent.created).fromNow(refresh = True) }}
+          </p>
+        </div>
+        <h2 class="display-8 mb-2">{{parent.title}}</h2>
+        <p>{{parent.body}}</p>
+      </section>
+      <a
+        class="btn btn-primary btn-lg"
+        href="{{url_for('create.create', reply_to=parent.id)}}"
+        role="button"
+        >Reply</a
+      >
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<div
+  class="w-100 jumbotron p-2 border mb-4"
+  style="max-height: 230px; height: fit-content"
+>
+  <div class="d-flex position-relative" style="height: fit-content">
+    <div class="w-50" style="height: fit-content">
+      <section class="position-relative">
+        <a
+          href="{{url_for('viewPost.viewPost', username=post.author, post_id=post.id)}}"
+          class="stretched-link"
+        ></a>
+        <div class="d-flex align-items-center text-secondary">
+          <p class="lead mb-0">{{post.author}}</p>
+          <span class="mx-2" style="user-select: none">•</span>
+          <p class="lead mb-0">
+            {{ moment(post.created).fromNow(refresh = True) }}
+          </p>
+        </div>
+        <h2 class="display-8 mb-2">{{post.title}}</h2>
+        <p>{{post.body}}</p>
+      </section>
+      <a
+        class="btn btn-primary btn-lg"
+        href="{{url_for('create.create', reply_to=post.id)}}"
+        role="button"
+        >Reply</a
+      >
+    </div>
+
+    <div class="w-50">
+      Replies: {% if post.replies %}
+      <div class="overflow-auto position-absolute" style="max-height: 75%">
+        <ul style="height: fit-content">
+          {% for reply in post.replies %}
+          <li>
+            <a
+              href="{{ url_for('viewPost.viewPost', username=post.author, post_id=reply.id) }}"
+              >{{reply.title}}</a
+            >
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% else %}
+      <p>No replies yet. Be the first to reply.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
