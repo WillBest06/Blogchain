@@ -31,23 +31,28 @@
         {{ form.hidden_tag() }}
         <h1 class="h3 mb-3 fw-normal">Sign up to continue</h1>
 
-        <div class="form-floating">
-          {{form.username(class="form-control", placeholder="Username")}}
-          {{form.username.label()}}
-        </div>
+        <section class="d-flex flex-column gap-3">
+          <div class="form-floating">
+            {{form.username(class="form-control", placeholder="Username")}}
+            {{form.username.label()}}
+          </div>
+          <div class="form-floating">
+            {{form.password(class="form-control", placeholder="Password")}}
+            {{form.password.label()}}
+          </div>
+          <div class="form-floating">
+            {{form.password_confirm(class="form-control", placeholder="Confirm
+            Password")}} {{form.password_confirm.label()}}
+          </div>
 
-        <div class="form-floating">
-          {{form.password(class="form-control", placeholder="Password")}}
-          {{form.password.label()}}
-        </div>
-
-        <div class="form-floating">
-          {{form.password_confirm(class="form-control", placeholder="Confirm
-          Password")}} {{form.password_confirm.label()}}
-        </div>
-
-        {{form.submit(class="btn btn-primary w-100 py-2", type="submit")}}
+          {{form.submit(class="btn btn-primary w-100 py-2", type="submit")}}
+        </section>
       </form>
+
+      <div class="mt-2">
+        Already have an account?
+        <a href="{{url_for('auth.login')}}">Log in</a>
+      </div>
     </main>
   </body>
 </html>
