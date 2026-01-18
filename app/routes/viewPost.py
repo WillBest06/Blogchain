@@ -6,11 +6,12 @@ viewPost_bp = Blueprint("viewPost", __name__)
 
 @viewPost_bp.route('/<username>/<int:post_id>')
 def viewPost(username, post_id):
-    post = db.session.execute(db.select(Post).where(Post.id == post_id)).scalar()
-    post.replies = db.session.execute(db.select(Post).where(Post.parent_id == post.id).order_by(Post.created.desc())).scalars().all()
+    post = db.session.execute(db.select(Post).where(Post.id == post_id)).scalar()  
     parent_post = None
 
+    # 404 error if db query returns null e.g. wrong url
     if post:
+        post.replies = db.session.execute(db.select(Post).where(Post.parent_id == post.id).order_by(Post.created.desc())).scalars().all()
         author = db.session.execute(db.select(User).where(User.id == post.user_id)).scalar()
         post.author = author.username
 
