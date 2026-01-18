@@ -25,12 +25,15 @@ def create():
         post.parent_id = parent_id
 
         db.session.add(post)
-        db.session.commit() 
+        db.session.commit()
             
         if parent_id:
             flash("Reply sent!")
         else:
             flash('Post created!')
-        return redirect(url_for('home.home')) 
+
+        author = db.session.execute(db.select(User).where(User.id == post.user_id)).scalar()
+        post.author = author.username
+        return redirect(url_for('viewPost.viewPost', username=post.author, post_id=post.id)) 
 
     return render_template('create/post.html', form=form, parent=parent_post)
