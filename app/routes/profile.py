@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template
-from flask_login import current_user
 from ..models import User, Post, db
 
 
@@ -18,4 +17,4 @@ def profile(username):
         author = db.session.execute(db.select(User).where(User.id == post.user_id)).scalar()
         post.author = author.username
         post.replies = db.session.execute(db.select(Post).where(Post.parent_id == post.id).order_by(Post.created.desc())).scalars().all()
-    return render_template('view/profile.html', user=user, posts=posts, deletePostForm=deletePostForm, current_user=current_user)
+    return render_template('view/profile.html', user=user, posts=posts, deletePostForm=deletePostForm)
