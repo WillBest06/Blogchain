@@ -24,4 +24,4 @@ def viewPost(username, post_id):
     else:
         abort(404)
 
-    return render_template('viewPost.html', post=post, parent=parent_post)
+    return render_template('view/viewPost.html', post=post, parent=parent_post)
