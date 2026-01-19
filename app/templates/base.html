@@ -51,13 +51,25 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
+            {% if user.username[0].isalpha() %}
             <img
-              src="{{ url_for('static', filename='profile_pictures/' + current_user.username[0].upper() + '.png') }}"
+              src="{{ url_for('static', filename='profile_pictures/' + user.username[0].upper() + '.png') }}"
               alt="{{current_user.username}}'s profile picture"
               width="32"
               height="32"
               class="rounded-circle"
             />
+            {% else %}
+
+            <img
+              src="{{ url_for('static', filename='profile_pictures/fallback_pfp.png') }}"
+              alt="Fallback profile picture"
+              width="32"
+              height="32"
+              class="rounded-circle"
+            />
+
+            {% endif %}
           </a>
 
           <ul class="dropdown-menu text-small">

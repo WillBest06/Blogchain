@@ -2,6 +2,7 @@
 {% block title %} Profile {% endblock %} {% block content %}
 <div class="d-flex flex-column gap-4">
   <div class="d-flex justify-content-center gap-4">
+    {% if user.username[0].isalpha() %}
     <img
       src="{{ url_for('static', filename='profile_pictures/' + user.username[0].upper() + '.png') }}"
       alt="{{current_user.username}}'s profile picture"
@@ -9,6 +10,17 @@
       height="150"
       class="rounded-circle"
     />
+    {% else %}
+
+    <img
+      src="{{ url_for('static', filename='profile_pictures/fallback_pfp.png') }}"
+      alt="Fallback profile picture"
+      width="150"
+      height="150"
+      class="rounded-circle"
+    />
+
+    {% endif %}
 
     <div class="d-flex flex-column">
       <h4>{{user.username}}</h4>
