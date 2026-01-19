@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block title %} Settings {% endblock %} {% block
+content %}
+<div>
+  <h1>Settings</h1>
+
+  <section class="d-flex flex-column gap-4 w-25">
+    <a
+      href="{{url_for('settings.update_password')}}"
+      class="btn btn-primary w-50"
+      >Update password</a
+    >
+    <form
+      class="w-50"
+      method="post"
+      action="{{url_for('settings.delete_account')}}"
+      onsubmit="
+        return confirm('Are you sure you want to delete your account?');
+      "
+    >
+      {{ deleteAccountForm.hidden_tag() }} {{deleteAccountForm.submit(class="btn
+      btn-danger w-100", type="submit")}}
+    </form>
+  </section>
+</div>
+{% endblock %}

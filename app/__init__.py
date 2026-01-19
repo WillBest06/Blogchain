@@ -28,6 +28,7 @@ def create_app():
     from .routes.viewPost import viewPost_bp
     from .routes.profile import profile_bp
     from .routes.delete import delete_bp
+    from .routes.settings import settings_bp
 
     from flask_wtf.csrf import CSRFProtect
     csrf = CSRFProtect(app) # for logout form which does not use WTForm
@@ -41,6 +42,7 @@ def create_app():
     app.register_blueprint(viewPost_bp, url_prefix='/users')
     app.register_blueprint(profile_bp, url_prefix='/users')
     app.register_blueprint(delete_bp)
+    app.register_blueprint(settings_bp, url_prefix='/settings')
 
     return app
 

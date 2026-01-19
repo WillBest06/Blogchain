@@ -80,7 +80,11 @@
                 >Profile</a
               >
             </li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li>
+              <a class="dropdown-item" href="{{url_for('settings.settings')}}"
+                >Settings</a
+              >
+            </li>
             <li><hr class="dropdown-divider" /></li>
             <li>
               <form method="post" action="{{ url_for('auth.logout') }}">
