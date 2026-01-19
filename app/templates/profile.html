@@ -5,7 +5,7 @@
     {% if user.username[0].isalpha() %}
     <img
       src="{{ url_for('static', filename='profile_pictures/' + user.username[0].upper() + '.png') }}"
-      alt="{{current_user.username}}'s profile picture"
+      alt="{{user.username}}'s profile picture"
       width="150"
       height="150"
       class="rounded-circle"
