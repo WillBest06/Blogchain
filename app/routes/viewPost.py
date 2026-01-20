@@ -24,4 +24,7 @@ def viewPost(username, post_id):
     else:
         abort(404)
 
-    return render_template('view/viewPost.html', post=post, parent=parent_post)
+    from .forms.create.deletePostForm import DeletePostForm
+    # DeletePostForm is a WTForms custom form
+    deletePostForm = DeletePostForm()
+    return render_template('view/viewPost.html', post=post, parent=parent_post, deletePostForm=deletePostForm)

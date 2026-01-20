@@ -18,12 +18,26 @@ content %} {% if parent %}
         <h2 class="display-8 mb-2">{{parent.title}}</h2>
         <p>{{parent.body}}</p>
       </section>
-      <a
-        class="btn btn-primary btn-lg"
-        href="{{url_for('create.create', reply_to=parent.id)}}"
-        role="button"
-        >Reply</a
-      >
+      <section class="d-flex gap-2">
+        <a
+          class="btn btn-primary btn-lg"
+          href="{{url_for('create.create', reply_to=parent.id)}}"
+          role="button"
+          >Reply</a
+        >
+        {% if parent.user_id == current_user.id %}
+        <form
+          method="post"
+          action="{{url_for('delete.deletePost', post_id=post.id)}}"
+          onsubmit="
+            return confirm('Are you sure you want to delete this post?');
+          "
+        >
+          {{ deletePostForm.hidden_tag() }} {{deletePostForm.submit(class="btn
+          btn-danger btn-lg", type="submit")}}
+        </form>
+        {% endif %}
+      </section>
     </div>
   </div>
 </div>
@@ -50,12 +64,26 @@ content %} {% if parent %}
         <h2 class="display-8 mb-2">{{post.title}}</h2>
         <p>{{post.body}}</p>
       </section>
-      <a
-        class="btn btn-primary btn-lg"
-        href="{{url_for('create.create', reply_to=post.id)}}"
-        role="button"
-        >Reply</a
-      >
+      <section class="d-flex gap-2">
+        <a
+          class="btn btn-primary btn-lg"
+          href="{{url_for('create.create', reply_to=post.id)}}"
+          role="button"
+          >Reply</a
+        >
+        {% if post.user_id == current_user.id %}
+        <form
+          method="post"
+          action="{{url_for('delete.deletePost', post_id=post.id)}}"
+          onsubmit="
+            return confirm('Are you sure you want to delete this post?');
+          "
+        >
+          {{ deletePostForm.hidden_tag() }} {{deletePostForm.submit(class="btn
+          btn-danger btn-lg", type="submit")}}
+        </form>
+        {% endif %}
+      </section>
     </div>
 
     <div class="w-50">
