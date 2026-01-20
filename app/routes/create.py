@@ -28,9 +28,9 @@ def create():
         db.session.commit()
             
         if parent_id:
-            flash("Reply sent!")
+            flash("Reply sent!", "success")
         else:
-            flash('Post created!')
+            flash('Post created!', "success")
 
         author = db.session.execute(db.select(User).where(User.id == post.user_id)).scalar()
         post.author = author.username

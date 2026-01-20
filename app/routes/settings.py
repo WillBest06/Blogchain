@@ -22,7 +22,7 @@ def update_password():
     if changePasswordForm.validate_on_submit():
         current_user.set_password(changePasswordForm.newPassword.data) # hashes the password
         db.session.commit()
-        flash('Password successfully updated. Please login.')
+        flash('Password successfully updated!', "success")
 
         return redirect(url_for('home.home')) # redirects to other route
 

@@ -25,7 +25,22 @@
     </style>
   </head>
 
-  <body class="d-flex align-items-center py-4 bg-body-tertiary">
+  <body class="d-flex flex-column align-items-center py-4 bg-body-tertiary">
+    <section class="d-flex justify-content-center">
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+        <div>{{ message }}</div>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      {% endfor %} {% endif %} {% endwith %}
+    </section>
+
     <main class="form-signin w-100 m-auto">
       {% block content %} {% endblock %}
     </main>

@@ -18,14 +18,14 @@ def login():
         if user and user.check_password(form.password.data):
             login_user(user)
 
-            flash('Logged in successfully.')
+            flash('Logged in successfully.', "success")
 
             next = request.args.get('next')
             print(next)
 
             return redirect(next or url_for('home.home'))
         else:
-            flash('Invalid username or password.')
+            flash('Invalid username or password.', "danger")
     return render_template('auth/login.html', form=form)
 
 @auth_bp.route("/logout", methods=['GET', 'POST'])
@@ -44,7 +44,7 @@ def signup():
         userAlreadyExists = db.session.execute(db.select(User).filter_by(username=form.username.data)).first()
 
         if userAlreadyExists:
-            flash('Username taken.')
+            flash('Username taken.', "danger")
         else:
             user = User()
             user.username = form.username.data
@@ -52,7 +52,7 @@ def signup():
 
             db.session.add(user)
             db.session.commit()
-            flash('Account successfully created. Please login.')
+            flash('Account successfully created. Please login.', "success")
             return redirect(url_for('auth.login')) # redirects to other route
 
     return render_template('auth/signup.html', form=form)
