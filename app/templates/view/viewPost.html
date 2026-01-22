@@ -20,7 +20,7 @@ content %} {% if parent %}
       </section>
       <section class="d-flex gap-2">
         <a
-          class="btn btn-primary btn-lg"
+          class="btn btn-green btn-lg"
           href="{{url_for('create.create', reply_to=parent.id)}}"
           role="button"
           >Reply</a
@@ -63,7 +63,7 @@ content %} {% if parent %}
       </section>
       <section class="d-flex gap-2">
         <a
-          class="btn btn-primary btn-lg"
+          class="btn btn-green btn-lg"
           href="{{url_for('create.create', reply_to=post.id)}}"
           role="button"
           >Reply</a
@@ -90,7 +90,7 @@ content %} {% if parent %}
           {% for reply in post.replies %}
           <li>
             <a
-              href="{{ url_for('viewPost.viewPost', username=post.author, post_id=reply.id) }}"
+              href="{{ url_for('viewPost.viewPost', username=reply.author, post_id=reply.id) }}"
               >{{reply.title}}</a
             >
           </li>

@@ -6,6 +6,8 @@
 
     <title>{% block title %} Blogchain {% endblock %}</title>
 
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -19,6 +21,8 @@
       defer
     ></script>
 
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
     {{ moment.include_moment() }}
   </head>
   <body class="min-vh-100">
@@ -26,6 +30,9 @@
       <div
         class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
       >
+       <img src="{{ url_for('static', filename='blogchain.svg') }}" width="64" height="64"></img>
+       <h1 style="color: #52925B;"><span style="color: #084635;">Blog</span>Chain</h1>
+
         <ul
           class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
         >

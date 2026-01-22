@@ -1,0 +1,10 @@
+.btn-green {
+  color: white;
+  background-color: #52925b;
+}
+
+.btn-green:hover {
+  color: #52925b;
+  background-color: white;
+  outline: #52925b 1px solid;
+}
