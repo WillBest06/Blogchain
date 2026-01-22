@@ -1,8 +1,8 @@
 {% extends "base.html" %} {% block title %}Create post{% endblock %} {% block
 content %} {% if parent %}
-<div class="w-100 jumbotron p-2 border mb-4">
-  <div class="d-flex">
-    <div class="w-100">
+<div class="w-100 jumbotron p-2 border mb-4" style="height: fit-content">
+  <div class="d-flex" style="height: fit-content">
+    <div class="w-100" style="height: fit-content">
       <section class="position-relative">
         <a
           href="{{url_for('viewPost.viewPost', username=parent.author, post_id=parent.id)}}"
@@ -43,10 +43,7 @@ content %} {% if parent %}
 </div>
 {% endif %}
 
-<div
-  class="w-100 jumbotron p-2 border mb-4"
-  style="max-height: 230px; height: fit-content"
->
+<div class="w-100 jumbotron p-2 border mb-4" style="height: fit-content">
   <div class="d-flex position-relative" style="height: fit-content">
     <div class="w-50" style="height: fit-content">
       <section class="position-relative">
