@@ -21,6 +21,7 @@ def create_app():
     
     login_manager.init_app(app)
     login_manager.login_view = 'auth.login'
+    login_manager.login_message_category = "danger"
 
     from .routes.home import home_bp
     from .routes.create import create_bp
